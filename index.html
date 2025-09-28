@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A.K.O GROUPE - Un groupe, plusieurs solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1a472a',    // Vert foncé
+                        secondary: '#fbbf24',  // Jaune
+                        accent: '#2d6a4f',     // Vert moyen
+                        light: '#fefce8'       // Jaune très clair
+                    },
+                    fontFamily: {
+                        'montserrat': ['Montserrat', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulse-glow 2s ease-in-out infinite alternate',
+                        'slide-in-left': 'slideInLeft 0.8s ease-out',
+                        'slide-in-right': 'slideInRight 0.8s ease-out',
+                        'bounce-in': 'bounceIn 1s ease-out',
+                        'fade-in-up': 'fadeInUp 0.8s ease-out',
+                        'zoom-in': 'zoomIn 0.6s ease-out',
+                    },
+                    backdropBlur: {
+                        xs: '2px',
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/css">
+        * {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        /* Animations personnalisées */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 5px rgba(251, 191, 36, 0.5); }
+            100% { box-shadow: 0 0 20px rgba(251, 191, 36, 0.8); }
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        /* Effet de parallaxe */
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        /* Animation au scroll */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .scroll-animate.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Navigation active */
+        .nav-link.active {
+            color: #fbbf24;
+            border-bottom: 2px solid #fbbf24;
+        }
+        
+        /* Effet de survol sur les cartes */
+        .card-hover {
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-hover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.1), transparent);
+            transition: left 0.7s;
+        }
+        
+        .card-hover:hover::before {
+            left: 100%;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        /* Effet de particules animées */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        .particle {
+            position: absolute;
+            background: rgba(251, 191, 36, 0.5);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+        
+        /* Effet de texte dégradé */
+        .gradient-text {
+            background: linear-gradient(135deg, #ffffffff 0%, #fbbf24 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Bouton avec effet de brillance */
+        .shine-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .shine-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 20%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(30deg);
+            transition: all 0.6s;
+        }
+        
+        .shine-btn:hover::after {
+            left: 120%;
+        }
+        
+        /* Effet de vague animée */
+        .wave {
+            animation: wave 10s linear infinite;
+        }
+        
+        @keyframes wave {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+        
+        /* Effet de scintillement */
+        .twinkle {
+            animation: twinkle 3s infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        /* Effet blur sur la navigation */
+        .nav-blur {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background-color: rgba(26, 71, 42, 0.8) !important;
+        }
+        
+        /* Style pour le logo de remplacement */
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-img {
+            height: 50px;
+            width: auto;
+            margin-right: 10px;
+            filter: brightness(0) invert(1);
+            transition: all 0.3s ease;
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+        
+        .logo-primary {
+            color: #fbbf24;
+        }
+        
+        .logo-secondary {
+            color: white;
+        }
+        
+        /* Ajustement pour la navigation avec blur */
+        header {
+            transition: all 0.3s ease;
+        }
+        
+        /* Style pour l'image de remplacement du logo */
+        .logo-placeholder {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #1a472a 0%, #fbbf24 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            font-weight: bold;
+            color: white;
+            font-size: 1.2rem;
+            border: 2px solid #fbbf24;
+        }
+
+                .newsletter-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            transition: transform 0.3s ease;
+        }
+        
+        .newsletter-container:hover {
+            transform: translateY(-5px);
+        }
+        
+        .newsletter-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .newsletter-icon {
+            background: linear-gradient(135deg, #0e7500ff, #ffee00ff);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            box-shadow: 0 5px 15px rgba(59, 34, 15, 0.3);
+        }
+        
+        .newsletter-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+        
+        .newsletter-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .newsletter-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        
+        .subscription-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .input-group {
+            display: flex;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .email-input {
+            flex: 1;
+            padding: 16px 20px;
+            border: none;
+            background: #f8f9fa;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .email-input:focus {
+            outline: none;
+            background: white;
+            box-shadow: inset 0 0 0 2px #ff9a00;
+        }
+        
+        .subscribe-btn {
+            background: linear-gradient(135deg, #ffee00ff, #235f00ff);
+            color: white;
+            border: none;
+            padding: 0 25px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .subscribe-btn:hover {
+            background: linear-gradient(135deg, #105e00ff, #ffee00ff);
+            transform: translateX(2px);
+        }
+        
+        .subscribe-btn:active {
+            transform: scale(0.98);
+        }
+        
+        .privacy-note {
+            font-size: 14px;
+            color: #888;
+            text-align: center;
+            margin-top: 15px;
+            line-height: 1.5;
+        }
+        
+        .privacy-note a {
+            color: #367900ff;
+            text-decoration: none;
+        }
+        
+        .success-message {
+            display: none;
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Responsive design */
+        @media (max-width: 600px) {
+            .newsletter-container {
+                padding: 30px 20px;
+            }
+            
+            .input-group {
+                flex-direction: column;
+                border-radius: 12px;
+            }
+            
+            .email-input {
+                border-radius: 12px 12px 0 0;
+            }
+            
+            .subscribe-btn {
+                padding: 15px;
+                border-radius: 0 0 12px 12px;
+            }
+    </style>
+</head>
+<body class="font-montserrat bg-white">
+    <!-- Navigation -->
+    <header class="fixed w-full z-50 bg-gradient-to-r from-primary to-accent shadow-2xl transition-all duration-500" id="main-header">
+        <nav class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="logo-container">
+                    <!-- Image de remplacement pour le logo -->
+                    <div class="logo-placeholder">
+                        <img src="img/logo1.png">
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-primary">AKO</span>
+                        <span class="logo-secondary"> GROUPE</span>
+                    </div>
+                </div>
+                
+                <!-- Menu desktop -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#accueil" class="nav-link text-white font-medium hover:text-secondary transition-all duration-300 py-2 transform hover:scale-110">Accueil</a>
+                    <a href="#apropos" class="nav-link text-white font-medium hover:text-secondary transition-all duration-300 py-2 transform hover:scale-110">À propos</a>
+                    <a href="#poles" class="nav-link text-white font-medium hover:text-secondary transition-all duration-300 py-2 transform hover:scale-110">Pôles d'activités</a>
+                    <a href="#valeurs" class="nav-link text-white font-medium hover:text-secondary transition-all duration-300 py-2 transform hover:scale-110">Nos valeurs</a>
+                    <a href="#contact" class="nav-link text-white font-medium hover:text-secondary transition-all duration-300 py-2 transform hover:scale-110">Contact</a>
+                </div>
+                
+                <!-- Bouton menu mobile -->
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-white focus:outline-none transform hover:scale-110 transition-transform duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Menu mobile -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2 pb-4">
+                <a href="#accueil" class="block text-white font-medium hover:text-secondary transition-all duration-300 py-2 transform hover:translate-x-2">Accueil</a>
+                <a href="#apropos" class="block text-white font-medium hover:text-secondary transition-all duration-300 py-2 transform hover:translate-x-2">À propos</a>
+                <a href="#poles" class="block text-white font-medium hover:text-secondary transition-all duration-300 py-2 transform hover:translate-x-2">Pôles d'activités</a>
+                <a href="#valeurs" class="block text-white font-medium hover:text-secondary transition-all duration-300 py-2 transform hover:translate-x-2">Nos valeurs</a>
+                <a href="#contact" class="block text-white font-medium hover:text-secondary transition-all duration-300 py-2 transform hover:translate-x-2">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="accueil" class="min-h-screen flex items-center justify-center relative overflow-hidden parallax" style="background-image: linear-gradient(135deg, rgba(26, 71, 42, 0.9) 0%, rgba(45, 106, 79, 0.9) 100%), url('https://i.pinimg.com/736x/dd/9c/83/dd9c83fc19e0d4797d977cabc99f5645.jpg');">
+        <!-- Particules animées -->
+        <div class="particles" id="particles-container"></div>
+        
+        <div class="container mx-auto px-4 text-center text-white z-10">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 scroll-animate">
+                <span class="gradient-text">Un groupe, plusieurs solutions</span>
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto scroll-animate">AKO GROUPE est une organisation congolaise ambitieuse et visionnaire, née de la volonté d'apporter des solutions concrètes aux besoins socio-économiques du Congo-Brazzaville et de l'Afrique.</p>
+            <div class="scroll-animate">
+                <a href="#apropos" class="inline-block bg-gradient-to-r from-secondary to-yellow-500 text-primary font-bold py-4 px-10 rounded-full shine-btn hover:from-yellow-400 hover:to-yellow-600 transition-all duration-500 transform hover:scale-105 shadow-2xl">
+                    Découvrir notre groupe
+                </a>
+            </div>
+        </div>
+        
+        <!-- Vague animée en bas -->
+        <div class="absolute bottom-0 left-0 w-full overflow-hidden">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="relative block w-full h-16">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" 
+                      class="fill-current text-light opacity-30 wave"></path>
+            </svg>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10">
+            <a href="#apropos" class="text-secondary animate-bounce twinkle">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- À propos -->
+    <section id="apropos" class="py-20 bg-gradient-to-br from-white to-light relative overflow-hidden">
+        <!-- Éléments décoratifs -->
+        <div class="absolute top-10 right-10 w-32 h-32 bg-secondary rounded-full opacity-10 animate-pulse"></div>
+        <div class="absolute bottom-20 left-10 w-24 h-24 bg-primary rounded-full opacity-10 animate-pulse"></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4 scroll-animate">
+                    À propos de <span class="gradient-text">nous</span>
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-6 rounded-full"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto scroll-animate">Structurée autour d'une approche pluridisciplinaire, le groupe œuvre à travers plusieurs secteurs d'activités clés, en alliant innovation, responsabilité sociale et excellence opérationnelle.</p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2 scroll-animate">
+                    <div class="bg-gradient-to-br from-primary to-secondary p-1 rounded-2xl shadow-2xl transform hover:rotate-1 transition-transform duration-500">
+                        <div class="bg-white rounded-2xl p-2">
+                            <img src="img/logo1.png" alt="A.K.O GROUPE" class="rounded-xl shadow-lg">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2 scroll-animate">
+                    <h3 class="text-2xl font-bold text-primary mb-6">Notre <span class="gradient-text">histoire</span></h3>
+                    <p class="text-gray-700 mb-4">A.K.O GROUPE est une organisation congolaise ambitieuse et visionnaire, née de la volonté des grands hommes qui ont décidé de faire confiance à des jeunes entrepreneurs dynamiques et créatifs pour apporter des solutions concrètes aux besoins socio-économiques du Congo-Brazzaville et de l'Afrique.</p>
+                    <p class="text-gray-700 mb-4">Notre mission est de construire une organisation solide qui impacte durablement le développement économique du pays tout en créant des opportunités pour la jeunesse.</p>
+                    <p class="text-gray-700 mb-6">Notre vision est de devenir un acteur de référence multisectoriel en Afrique, porteur de transformation et de progrès.</p>
+                    
+                    <div class="grid grid-cols-2 gap-4 mt-8">
+                        <div class="text-center p-4 bg-gradient-to-br from-white to-light rounded-xl shadow-lg border border-gray-100 transform hover:-translate-y-2 transition-transform duration-300">
+                            <div class="text-3xl font-bold text-primary">2</div>
+                            <div class="text-gray-600">Pôles d'activités</div>
+                        </div>
+                        <div class="text-center p-4 bg-gradient-to-br from-white to-light rounded-xl shadow-lg border border-gray-100 transform hover:-translate-y-2 transition-transform duration-300">
+                            <div class="text-3xl font-bold text-primary">+5</div>
+                            <div class="text-gray-600">Secteurs d'activité</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pôles d'activités -->
+    <section id="poles" class="py-20 bg-gradient-to-tr from-gray-50 to-light relative overflow-hidden">
+        <!-- Éléments décoratifs -->
+        <div class="absolute -top-20 -right-20 w-64 h-64 bg-secondary rounded-full opacity-5"></div>
+        <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-primary rounded-full opacity-5"></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4 scroll-animate">
+                    Nos <span class="gradient-text">pôles d'activités</span>
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-6 rounded-full"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto scroll-animate">Le groupe est composé de plusieurs pôles spécialisés, chacun œuvrant dans des secteurs clés pour le développement économique.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- A.K.O FOOD -->
+                <div class="bg-gradient-to-br from-white to-light rounded-2xl shadow-xl overflow-hidden card-hover scroll-animate">
+                    <div class="h-48 bg-cover bg-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="A.K.O FOOD" class="w-full h-full object-cover">
+                        <div class="absolute bottom-4 left-6">
+                            <div class="w-14 h-14 bg-secondary rounded-full flex items-center justify-center shadow-lg">
+                                <i class="fas fa-utensils text-white text-2xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-primary mb-4">A.K.O FOOD</h3>
+                        <p class="text-gray-700 mb-6">Ce département incarne la vision agroalimentaire du groupe et regroupe plusieurs activités essentielles.</p>
+                        
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-secondary mt-1 mr-3 text-lg"></i>
+                                <span><strong class="text-primary">Food Truck :</strong> service mobile de restauration moderne, pensé pour offrir des repas rapides, sains et accessibles.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-secondary mt-1 mr-3 text-lg"></i>
+                                <span><strong class="text-primary">Agriculture, Élevage & Pisciculture :</strong> avec une approche durable et productive, A.K.O FOOD développe des exploitations agricoles modernes.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-secondary mt-1 mr-3 text-lg"></i>
+                                <span><strong class="text-primary">Transformation des produits agricoles :</strong> valorisation des récoltes à travers la transformation agroalimentaire.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- A.K.O.M INDUSTRIE -->
+                <div class="bg-gradient-to-br from-white to-light rounded-2xl shadow-xl overflow-hidden card-hover scroll-animate">
+                    <div class="h-48 bg-cover bg-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                        <img src="https://i.pinimg.com/1200x/6f/25/29/6f2529fcef64a6d0bfbb7682f55fb131.jpg" alt="A.K.O.M INDUSTRIE" class="w-full h-full object-cover">
+                        <div class="absolute bottom-4 left-6">
+                            <div class="w-14 h-14 bg-secondary rounded-full flex items-center justify-center shadow-lg">
+                                <i class="fas fa-industry text-white text-2xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-primary mb-4">A.K.O.M INDUSTRIE</h3>
+                        <p class="text-gray-700 mb-6">Ce pôle regroupe les activités industrielles et commerciales du groupe.</p>
+                        
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-secondary mt-1 mr-3 text-lg"></i>
+                                <span><strong class="text-primary">Commerce :</strong> import-export, distribution de biens à forte demande et développement de partenariats commerciaux.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-secondary mt-1 mr-3 text-lg"></i>
+                                <span><strong class="text-primary">Bâtiment :</strong> construction, rénovation et aménagement d'infrastructures durables.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-secondary mt-1 mr-3 text-lg"></i>
+                                <span><strong class="text-primary">Maintenance industrielle :</strong> services techniques pour l'entretien, la réparation et l'optimisation des équipements.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Valeurs -->
+    <section id="valeurs" class="py-20 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
+        <!-- Éléments décoratifs animés -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+            <div class="absolute top-1/4 left-1/4 w-16 h-16 bg-secondary rounded-full opacity-10 animate-float"></div>
+            <div class="absolute top-3/4 right-1/4 w-12 h-12 bg-primary rounded-full opacity-10 animate-float" style="animation-delay: 2s;"></div>
+            <div class="absolute bottom-1/3 left-1/3 w-20 h-20 bg-accent rounded-full opacity-10 animate-float" style="animation-delay: 4s;"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4 scroll-animate">
+                    Nos <span class="gradient-text">valeurs</span>
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-6 rounded-full"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto scroll-animate">Les principes fondamentaux qui guident toutes nos actions et décisions.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center p-6 bg-gradient-to-br from-white to-light rounded-2xl shadow-lg card-hover scroll-animate">
+                    <div class="w-20 h-20 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                        <i class="fas fa-shield-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-3">Intégrité</h3>
+                    <p class="text-gray-700">Nous agissons avec honnêteté et transparence dans toutes nos relations d'affaires.</p>
+                </div>
+                
+                <div class="text-center p-6 bg-gradient-to-br from-white to-light rounded-2xl shadow-lg card-hover scroll-animate" style="animation-delay: 0.2s;">
+                    <div class="w-20 h-20 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                        <i class="fas fa-lightbulb text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-3">Innovation</h3>
+                    <p class="text-gray-700">Nous recherchons constamment des solutions créatives pour répondre aux défis actuels.</p>
+                </div>
+                
+                <div class="text-center p-6 bg-gradient-to-br from-white to-light rounded-2xl shadow-lg card-hover scroll-animate" style="animation-delay: 0.4s;">
+                    <div class="w-20 h-20 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                        <i class="fas fa-star text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-3">Excellence</h3>
+                    <p class="text-gray-700">Nous visons la qualité supérieure dans tous nos produits et services.</p>
+                </div>
+                
+                <div class="text-center p-6 bg-gradient-to-br from-white to-light rounded-2xl shadow-lg card-hover scroll-animate" style="animation-delay: 0.6s;">
+                    <div class="w-20 h-20 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                        <i class="fas fa-hands-helping text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-3">Responsabilité sociale</h3>
+                    <p class="text-gray-700">Nous nous engageons à contribuer positivement au développement de notre communauté.</p>
+                </div>
+            </div>
+            
+            <!-- Mission & Vision -->
+            <div class="grid md:grid-cols-2 gap-8 mt-16">
+                <div class="bg-gradient-to-r from-primary to-accent text-white p-8 rounded-2xl shadow-2xl scroll-animate transform hover:-translate-y-2 transition-transform duration-300">
+                    <h3 class="text-2xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-bullseye mr-3 text-secondary"></i> Notre mission
+                    </h3>
+                    <p class="text-lg">Construire une organisation solide qui impacte durablement le développement économique du pays tout en créant des opportunités pour la jeunesse.</p>
+                </div>
+                
+                <div class="bg-gradient-to-r from-secondary to-yellow-400 text-primary p-8 rounded-2xl shadow-2xl scroll-animate transform hover:-translate-y-2 transition-transform duration-300">
+                    <h3 class="text-2xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-eye mr-3 text-primary"></i> Notre vision
+                    </h3>
+                    <p class="text-lg">Devenir un acteur de référence multisectoriel en Afrique, porteur de transformation et de progrès.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-20 bg-gradient-to-br from-gray-50 to-light relative overflow-hidden">
+        <!-- Vague décorative -->
+        <div class="absolute top-0 left-0 w-full overflow-hidden rotate-180">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="relative block w-full h-16">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" 
+                      class="fill-current text-primary opacity-10"></path>
+            </svg>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4 scroll-animate">
+                    Contactez-<span class="gradient-text">nous</span>
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-6 rounded-full"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto scroll-animate">N'hésitez pas à nous contacter pour toute question ou collaboration.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="scroll-animate">
+                    <h3 class="text-2xl font-bold text-primary mb-6">Informations de contact</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start bg-gradient-to-r from-white to-light p-4 rounded-xl shadow-md transform hover:translate-x-2 transition-transform duration-300">
+                            <div class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mr-4 shadow-lg">
+                                <i class="fas fa-map-marker-alt text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-primary">Adresse</h4>
+                                <p class="text-gray-700">Brazzaville, Congo</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start bg-gradient-to-r from-white to-light p-4 rounded-xl shadow-md transform hover:translate-x-2 transition-transform duration-300">
+                            <div class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mr-4 shadow-lg">
+                                <i class="fas fa-phone-alt text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-primary">Téléphone</h4>
+                                <p class="text-gray-700">+242 06 666 5482 / 06 666 5482</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start bg-gradient-to-r from-white to-light p-4 rounded-xl shadow-md transform hover:translate-x-2 transition-transform duration-300">
+                            <div class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mr-4 shadow-lg">
+                                <i class="fas fa-envelope text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-primary">Email</h4>
+                                <p class="text-gray-700">contacts.communication@akogroupe.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h4 class="font-bold text-primary mb-4">Suivez-nous</h4>
+                        <div class="flex space-x-4">
+                            <a href="#" class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-white shadow-lg transform hover:scale-110 hover:animate-pulse-glow transition-all duration-300">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-white shadow-lg transform hover:scale-110 hover:animate-pulse-glow transition-all duration-300">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-white shadow-lg transform hover:scale-110 hover:animate-pulse-glow transition-all duration-300">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-white shadow-lg transform hover:scale-110 hover:animate-pulse-glow transition-all duration-300">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="scroll-animate">
+                    <h3 class="text-2xl font-bold text-primary mb-6">Envoyez-nous un message</h3>
+                    
+                    <form class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-gray-700 font-medium mb-2">Nom complet</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300" placeholder="Votre nom">
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-gray-700 font-medium mb-2">Adresse email</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300" placeholder="Votre email">
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
+                            <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300" placeholder="Votre message"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-gradient-to-r from-primary to-accent text-white font-bold py-4 px-6 rounded-xl shine-btn hover:from-accent hover:to-primary transition-all duration-500 transform hover:scale-105 shadow-xl">
+                            Envoyer le message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-primary to-accent text-white py-12 relative overflow-hidden">
+        <!-- Éléments décoratifs -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-10">
+            <div class="absolute top-10 left-10 w-32 h-32 bg-secondary rounded-full animate-pulse"></div>
+            <div class="absolute bottom-10 right-10 w-24 h-24 bg-white rounded-full animate-pulse"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">
+                        <span class="text-secondary">AKO</span> GROUPE
+                    </h3>
+                    <p class="mb-4">Un groupe, plusieurs solutions. Organisation congolaise œuvrant pour le développement économique et social.</p>
+                    <p>&copy; <span id="current-year">2025</span> A.K.O GROUPE. Tous droits réservés.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-xl font-bold mb-4">Liens rapides</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#accueil" class="hover:text-secondary transition-colors duration-300 transform hover:translate-x-1 inline-block">Accueil</a></li>
+                        <li><a href="#apropos" class="hover:text-secondary transition-colors duration-300 transform hover:translate-x-1 inline-block">À propos</a></li>
+                        <li><a href="#poles" class="hover:text-secondary transition-colors duration-300 transform hover:translate-x-1 inline-block">Pôles d'activités</a></li>
+                        <li><a href="#valeurs" class="hover:text-secondary transition-colors duration-300 transform hover:translate-x-1 inline-block">Nos valeurs</a></li>
+                        <li><a href="#contact" class="hover:text-secondary transition-colors duration-300 transform hover:translate-x-1 inline-block">Contact</a></li>
+                    </ul>
+                </div>
+                
+    <div class="newsletter-container">
+        <div class="newsletter-header">
+            <div class="newsletter-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+            </div>
+            <h1 class="newsletter-title">Newsletter</h1>
+        </div>
+        
+        <p class="newsletter-description">
+            Abonnez-vous à notre newsletter pour recevoir nos actualités</p>
+        
+        <div class="subscription-form">
+            <div class="input-group">
+                <input type="email" class="email-input" placeholder="Votre adresse email" required>
+                <button class="subscribe-btn">S'abonner</button>
+            </div>            
+            
+            <div class="success-message">
+                Merci pour votre inscription ! Un email de confirmation a été envoyé.
+            </div>
+        </div>
+    </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Menu mobile toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+        
+        // Animation au scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.scroll-animate');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('animated');
+                }
+            });
+        }
+        
+        // Gestion de la navigation active
+        function setActiveNavLink() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (window.scrollY >= (sectionTop - 200)) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        
+        // Effet blur sur la navigation lors du scroll
+        function handleNavBlur() {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 50) {
+                header.classList.add('nav-blur');
+                header.classList.add('py-2');
+            } else {
+                header.classList.remove('nav-blur');
+                header.classList.remove('py-2');
+            }
+        }
+        
+        // Créer des particules animées
+        function createParticles() {
+            const container = document.getElementById('particles-container');
+            const particleCount = 15;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Taille aléatoire
+                const size = Math.random() * 10 + 5;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Position aléatoire
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // Animation avec délai aléatoire
+                particle.style.animationDelay = `${Math.random() * 15}s`;
+                
+                container.appendChild(particle);
+            }
+        }
+        
+        // Mettre à jour l'année dans le footer
+        function updateYear() {
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+        }
+        
+        // Événements
+        window.addEventListener('scroll', function() {
+            animateOnScroll();
+            setActiveNavLink();
+            handleNavBlur();
+        });
+        
+        // Initialiser les animations au chargement
+        document.addEventListener('DOMContentLoaded', function() {
+            animateOnScroll();
+            setActiveNavLink();
+            handleNavBlur();
+            createParticles();
+            updateYear();
+        });
+
+                document.addEventListener('DOMContentLoaded', function() {
+            const subscribeBtn = document.querySelector('.subscribe-btn');
+            const emailInput = document.querySelector('.email-input');
+            const successMessage = document.querySelector('.success-message');
+            
+            subscribeBtn.addEventListener('click', function() {
+                const email = emailInput.value.trim();
+                
+                if (validateEmail(email)) {
+                    // Simulate subscription success
+                    successMessage.style.display = 'block';
+                    emailInput.value = '';
+                    
+                    // Hide success message after 5 seconds
+                    setTimeout(() => {
+                        successMessage.style.display = 'none';
+                    }, 5000);
+                } else {
+                    emailInput.focus();
+                    emailInput.style.boxShadow = 'inset 0 0 0 2px #ff0000';
+                    
+                    // Reset error state after 2 seconds
+                    setTimeout(() => {
+                        emailInput.style.boxShadow = '';
+                    }, 2000);
+                }
+            });
+            
+            // Allow submission with Enter key
+            emailInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    subscribeBtn.click();
+                }
+            });
+            
+            function validateEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(email);
+            }
+        });
+    </script>
+</body>
+</html>
